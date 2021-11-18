@@ -1,9 +1,10 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
-const restaurantSchema = mongoose.Schema(
+const RestaurantSchema = new mongoose.Schema(
     {
         name : { type: String, required: true },
         city : { type: String, required: true },
+        address : { type: String, required: true },
         mapLocation : { type: String, required: true },
         cuisine : [String],
         restaurantTimings : String,
@@ -11,7 +12,7 @@ const restaurantSchema = mongoose.Schema(
         website : String,
         popularDishes : [String],
         averageCost : Number,
-        amenities : [String], 
+        amenties : [String], 
         menuImages:{
             type: mongoose.Types.ObjectId,
             ref: "Images",
@@ -20,10 +21,13 @@ const restaurantSchema = mongoose.Schema(
             type: mongoose.Types.ObjectId,
             ref: "Menus"
         },
-        reviews: { type: mongoose.Types.ObjectId,ref: "Foods"},
+        reviews: { type: mongoose.Types.ObjectId,ref: "Reviews"},
         photos : { type: mongoose.Types.ObjectId, ref: "Images"}
+    },
+    {
+        timestamps: true
     }
 );
 
-export const RestaurantModel = mongoose.model("Restaurants", restaurantSchema);
+export const RestaurantModel = mongoose.model("Restaurants", RestaurantSchema);
   
