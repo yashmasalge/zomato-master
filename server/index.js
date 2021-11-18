@@ -1,17 +1,16 @@
 // MAIN BACKEND FILE
-require("@babel/core").transform("code", {
-    presets: ["@babel/preset-env"],
-  });  
-  import express from 'express';
 require("dotenv").config();
 
 // CORS,express,helmet
+import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 
 //mongoose connection
 const connectDB = require("./database/connection");
-//mongoose model
+
+//API
+import Auth from "./API/Auth"
 
 
 const zomato = express();
@@ -22,11 +21,12 @@ zomato.use(cors());
 // using Helemt
 zomato.use(helmet());
 
+// Application Routes
+zomato.use("/auth",Auth);
+
 //creating a port at 5000
 zomato.listen(process.env.PORT || 5000,() =>
  connectDB().then((data) =>
  console.log("Server started successfully"))
  .catch((error) => console.log(error))
  );  
-
-// zomato.listen(5000,() => {console.log("Server stareted successfully")})
