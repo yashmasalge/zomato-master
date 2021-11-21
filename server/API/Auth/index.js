@@ -1,5 +1,6 @@
 // Library
 import express from "express";
+import passport from "passport";
 // models
 import { UserModel } from "../../database/allModels";
 
@@ -35,6 +36,36 @@ Router.post("/signin",async (req,res) =>{
         return res.status(500).json({error : error.message});
     }
 })
+
+/** 
+ * Router       /google
+ * Des          google signin
+ * Params       none
+ * Access       Public
+ * Method       GET
+*/
+Router.get("/google", passport.authenticate("google",{
+scope : [
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "https://www.googleapis.com/auth/userinfo.email"
+]
+} ));
+
+/** 
+ * Router       /google/callback
+ * Des          google signin callback
+ * Params       none
+ * Access       Public
+ * Method       GET
+*/
+
+Router.get("/google/callback", passport.authenticate("google", {failureRedirect : "/"}),
+(req,res) => {
+return res
+.status(200)
+.json({token: req.session.passport.user.token, status : "success" });
+}
+);
 
 export default Router;
 
