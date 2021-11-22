@@ -20,7 +20,9 @@ Router.get("/", async (req, res) => {
     }
 
     return res.json({ restaurants });
-  } catch (error) {}
+  } catch(error){
+    return res.status(500).json({error : error.message});
+}
 });
 
 /**
@@ -59,6 +61,7 @@ Router.get("/search", async(req,res) =>{
     if(!restaurant) {
         return res.status(404).json({error : `no restaurant matched with ${search} `})
     };
+    return res.json({ restaurant });
     }catch (error) {
         return res.status(500).json({ error: error.message });
       }

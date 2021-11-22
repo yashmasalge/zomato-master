@@ -38,11 +38,11 @@ export default (passport) => {
                       
                 }
                 catch(error){
-                    done(error, null)
+                    done(error, null);
                 }  
             }
         )
-    )
+    );
     passport.serializeUser((userData, done) => done(null, {...userData}));
     passport.deserializeUser((id, done) => done(null, id));
 };
