@@ -10,17 +10,22 @@
   "author": "yash masalge",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.1034.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "env": "0.0.2",
     "express": "^4.17.1",
     "helmet": "^4.6.0",
+    "joi": "^17.4.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.12",
+    "multer": "^1.4.3",
     "nodemon": "^2.0.15",
     "passport": "^0.5.0",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "passport-jwt": "^4.0.0",
+    "promise": "^8.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.0",

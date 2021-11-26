@@ -1,6 +1,8 @@
 import express from "express";
 
 import { RestaurantModel } from "../../database/restaurant";
+import { ValidateRestaurantCity,ValidateRestaurantSearchString } from '../../validation/restaurant';
+import { ValidateId } from '../../validation/common'
 // create a router
 const Router = express.Router();
 
@@ -13,6 +15,7 @@ const Router = express.Router();
  */
 Router.get("/", async (req, res) => {
   try {
+    ValidateRestaurantCity(req.query);
     const { city } = req.query;
     const restaurants = await RestaurantModel.find({ city });
     if (restaurants.length == 0) {
@@ -35,6 +38,7 @@ Router.get("/", async (req, res) => {
 // http://localhost:4000/restaurant/12454dsfdofi438532
 Router.get("/:_id", async (req,res) => {
     try{
+        ValidateId(req.params);
         const { _id } = req.params;
     const restaurant = await RestaurantModel.findById(_id);
     if(!restaurant){return res.json({error : "No restaurant found"})};
@@ -54,6 +58,7 @@ Router.get("/:_id", async (req,res) => {
  */
 Router.get("/search", async(req,res) =>{
     try{
+        ValidateRestaurantSearchString(req.params);
         const { search } = req.params;
     const restaurant = await RestaurantModel.find({
         name : {$regex : search, $options : "i"},
