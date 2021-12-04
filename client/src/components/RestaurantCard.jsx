@@ -4,8 +4,8 @@ import { AiTwotoneStar } from "react-icons/ai";
 
 function RestaurantCard(props) {
   return (
-    <Link to={`/restaurant/${props._id}`} className="w-full md:w-1/2 lg:w-1/3">
-      <div className="bg-white p-4 mb-4 w-full rounded-2xl transition duration-700 ease-in-out hover:shadow-lg ">
+    <Link to={`/restaurant/${props._id}`} className="w-full md:w-1/2 lg:w-1/3 ">
+      <div className="bg-white p-10 mb-4 w-full rounded-2xl transition duration-700 ease-in-out hover:shadow-lg">
         <div className="w-full lg:h-64 relative">
           <div className=" w-full bottom-4 flex items-end justify-between">
             <div className="flex flex-col gap-2 items-start absolute">

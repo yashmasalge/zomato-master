@@ -19,6 +19,11 @@ function App() {
     </Routes>
       <HomeLayoutHoc component={HomePage} path="/:type" />
       <RestaurantLayoutHoc component={RestaurantPage} path = '/restaurant/:id' />
+      <RestaurantLayoutHoc component={HomePage} path = '/restaurant/:id/overview' />
+      <RestaurantLayoutHoc component={HomePage} path = '/restaurant/:id/order-online' />
+      <RestaurantLayoutHoc component={HomePage} path = '/restaurant/:id/reviews' />
+      <RestaurantLayoutHoc component={HomePage} path = '/restaurant/:id/menu' />
+      <RestaurantLayoutHoc component={HomePage} path = '/restaurant/:id/photos' />
     </>
   );
 }
