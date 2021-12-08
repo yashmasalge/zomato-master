@@ -10,6 +10,7 @@ import HomeLayoutHoc from "./HOC/Home.hoc";
 import HomePage from "./pages/HomePage";
 import RestaurantLayoutHoc from "./HOC/Restaurant.hoc";
 import RestaurantPage from "./pages/RestaurantPage";
+import Overview from "./components/Restaurant/Overview";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
     </Routes>
       <HomeLayoutHoc component={HomePage} path="/:type" />
       <RestaurantLayoutHoc component={RestaurantPage} path = '/restaurant/:id' />
-      <RestaurantLayoutHoc component={HomePage} path = '/restaurant/:id/overview' />
+      <RestaurantLayoutHoc component={Overview} path = '/restaurant/:id/overview' />
       <RestaurantLayoutHoc component={HomePage} path = '/restaurant/:id/order-online' />
       <RestaurantLayoutHoc component={HomePage} path = '/restaurant/:id/reviews' />
       <RestaurantLayoutHoc component={HomePage} path = '/restaurant/:id/menu' />
