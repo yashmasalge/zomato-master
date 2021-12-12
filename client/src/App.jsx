@@ -5,11 +5,15 @@ import { Routes,Navigate,Route } from "react-router-dom";
 
 // HOC
 import HomeLayoutHoc from "./HOC/Home.hoc";
+import CheckoutLayoutHoc from './HOC/Checkout.hoc';
+import RestaurantLayoutHoc from "./HOC/Restaurant.hoc";
 
 // Pages
 import HomePage from "./pages/HomePage";
-import RestaurantLayoutHoc from "./HOC/Restaurant.hoc";
 import RestaurantPage from "./pages/RestaurantPage";
+import Checkout from "./pages/CheckoutPage";
+
+// Components
 import Overview from "./components/Restaurant/Overview";
 import OrderOnline from "./components/Restaurant/OrderOnline";
 import Reviews from "./components/Restaurant/Reviews/Reviews";
@@ -29,6 +33,7 @@ function App() {
       <RestaurantLayoutHoc component={Reviews} path = '/restaurant/:id/reviews' />
       <RestaurantLayoutHoc component={Menu} path = '/restaurant/:id/menu' />
       <RestaurantLayoutHoc component={Photos} path = '/restaurant/:id/photos' />
+      <CheckoutLayoutHoc component={Checkout} path='/checkout/orders'/>
     </>
   );
 }
