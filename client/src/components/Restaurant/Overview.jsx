@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { IoMdArrowDropright } from "react-icons/io";
 import Slider from "react-slick";
 import ReactStars from "react-rating-stars-component";
+import MapView from "./MapView";
 
 // components
 import { NextArrow, PrevArrow } from "../CarouselArrow";
@@ -106,6 +107,22 @@ function Overview() {
               </span>
             ))}
           </div>
+          
+          <div className='flex flex-col-reverse'>
+          <div className="my-4">
+            <h4 className="text-lg font-medium">
+              Rate your delivery experience
+            </h4>
+            <ReactStars
+              count={5}
+              onChange={ratingChanged}
+              size={24}
+              activeColor="#ffd700"
+            />
+            {reviews.map((review, index) => (
+              <ReviewCard {...review} key={index} />
+            ))}
+          </div>
           <div className="my-4">
             <h4 className="text-lg font-medium">Average Cost</h4>
             <h6>${averageCost} for one order (approx.)</h6>
@@ -144,29 +161,26 @@ function Overview() {
               </Slider>
             </div>
           </div>
-          <div className="my-4">
-            <h4 className="text-lg font-medium">
-              Rate your delivery experience
-            </h4>
-            <ReactStars
-              count={5}
-              onChange={ratingChanged}
-              size={24}
-              activeColor="#ffd700"
-            />
-            {reviews.map((review, index) => (
-              <ReviewCard {...review} key={index} />
-            ))}
-          </div>
           <div className="my-4 w-full md:hidden flex flex-col gap-4">
-            ...Map Stuff
-          </div>
+          <MapView
+            title="McDonald's"
+            phno="+919234345634"
+            mapLocation={getLatLong("28.64435706075414, 77.11929960209767")}
+            address="Shop 52, Plot 8, 9 & 10, G-8, Ground Floor, DDA Market, J-Block, Community Centre, Rajouri Garden, New Delhi"
+          />
+          </div> 
+         </div> 
         </div>
         <aside
           style={{ height: "fit-content" }}
           className="hidden md:flex md:w-4/12 sticky rounded-xl top-10 bg-white p-3 shadow-md flex-col gap-4"
         >
-          ...Map Stuff
+          <MapView
+            title="McDonald's"
+            phno="+919234345634"
+            mapLocation={getLatLong("28.64435706075414, 77.11929960209767")}
+            address="Shop 52, Plot 8, 9 & 10, G-8, Ground Floor, DDA Market, J-Block, Community Centre, Rajouri Garden, New Delhi"
+          />
         </aside>
       </div>
     </>
