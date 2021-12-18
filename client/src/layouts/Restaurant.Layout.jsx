@@ -1,7 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect } from 'react';
 import { TiStarOutline } from 'react-icons/ti';
-import { RiDirectionLine, RiShareForward2Lineb} from 'react-icons/ri';
+import { RiDirectionLine, RiShareForward2Line} from 'react-icons/ri';
 import { BiBookmarkPlus} from 'react-icons/bi'
+import { useParams } from "react-router-dom";
+
+// Redux
+import { useDispatch } from "react-redux";
+import { getSpecificRestaurant } from "../redux/reducers/restaurant/restaurant.action";
+import { getImage } from "../redux/reducers/image/image.action";
 
 // Components
 import Navbar from '../components/Navbar';
@@ -14,21 +20,33 @@ import CartContainer from '../components/Cart/CartContainer';
 function RestaurantLayout({children}) {
 
     const [restaurant ,setRestaurant] = useState({
-        images: [
-            "https://b.zmtcdn.com/data/pictures/chains/3/307893/ac9e6b3236967e1e255e14e24cc0c9e7.jpg",
-            "https://b.zmtcdn.com/data/pictures/chains/3/307893/69f1fa33c357f755f7021b7e35d59380.jpg",
-            "https://b.zmtcdn.com/data/pictures/chains/3/307893/ab32e4d69281d2eb639cb9ae4850e972.jpg",
-            "https://b.zmtcdn.com/data/pictures/chains/3/307893/69f1fa33c357f755f7021b7e35d59380.jpg",
-            "https://b.zmtcdn.com/data/pictures/chains/3/307893/ab32e4d69281d2eb639cb9ae4850e972.jpg",
-          ],
-          name: "Bakehouse Comfort",
-          cuisine: "Bakery, Desserts, Fast Food",
-          address: "Biryani, Hyderabadi, Andhra, North Indian, Chinese, Desserts",
+        images: [],
+          name: "",
+          cuisine: "",
+          address: "",
           restaurantRating: 4.1,
           deliveryRating: 3.2,
     });
     
-    const [images, setImage] = useState([]);
+    const { id } = useParams();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getSpecificRestaurant(id)).then((data) => {
+          setRestaurant((prev) => ({
+            ...prev,
+            ...data.payload.restaurant,
+          }));
+    
+          dispatch(getImage(data.payload.restaurant.photos)).then((data) => {
+            console.log(data);
+            setRestaurant((prev) => ({
+              ...prev,
+              images: data.payload.images,
+            }));
+          });
+        });
+      }, []);
 
     return <>
         <Navbar />
@@ -46,13 +64,13 @@ function RestaurantLayout({children}) {
                 <TiStarOutline /> Add Review
             </InfoButton>
             <InfoButton >
-                <TiStarOutline /> Direction
+                <RiDirectionLine /> Direction
             </InfoButton>
             <InfoButton>
-                <TiStarOutline /> Bookmark
+                <BiBookmarkPlus /> Bookmark
             </InfoButton>
             <InfoButton>
-                <TiStarOutline /> Share
+                <RiShareForward2Line /> Share
             </InfoButton>
         </div>
         <div className='my-10'>

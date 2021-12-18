@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 // redux types
-import { GET_RESTAURANT } from './restaurant.type';
+import { GET_RESTAURANT, GET_SPECIFIC_RESTAURANT } from './restaurant.type';
 
 export const getRestaurant = () => async(dispatch) => {
     try{
         const restaurantList = await axios({
             method: "GET",
-            url: "http://localhost:5000/restaurant/?city=mumbai"
+            url: "http://localhost:5000/restaurant/?city=NCR"
         });
 
         return dispatch({type : GET_RESTAURANT, payload: restaurantList.data});
@@ -15,4 +15,22 @@ export const getRestaurant = () => async(dispatch) => {
     catch(error){
         return dispatch({type : "Error", payload: error});
     }
-}
+};
+
+
+// Specific restaurant
+export const getSpecificRestaurant = (_id) => async (dispatch) => {
+    try {
+      const restaurnat = await axios({
+        method: "GET",
+        url: `http://localhost:5000/restaurant/${_id}`,
+      });
+  
+      return dispatch({
+        type: GET_SPECIFIC_RESTAURANT,
+        payload: restaurnat.data,
+      });
+    } catch (error) {
+      return dispatch({ type: "ERROR", payload: error });
+    }
+  };

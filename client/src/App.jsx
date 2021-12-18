@@ -19,15 +19,17 @@ import OrderOnline from "./components/Restaurant/OrderOnline";
 import Reviews from "./components/Restaurant/Reviews/Reviews";
 import Menu from "./components/Restaurant/Menu/Menu";
 import Photos from "./components/Restaurant/Photos/Photos";
+import Redirect from "./pages/Restaurant/Redirect";
 
 function App() {
   return (
     <>
        <Routes>
       <Route path="/" element={<Navigate replace to="/delivery" />} />
+      <Route path="/restaurant/:id" element={<Navigate replace to="/restaurant/:id/overview" />} />
     </Routes>
       <HomeLayoutHoc component={HomePage} path="/:type" />
-      <RestaurantLayoutHoc component={RestaurantPage} path = '/restaurant/:id' />
+      <RestaurantLayoutHoc component={Redirect} path = '/restaurant/:id' />
       <RestaurantLayoutHoc component={Overview} path = '/restaurant/:id/overview' />
       <RestaurantLayoutHoc component={OrderOnline} path = '/restaurant/:id/order-online' />
       <RestaurantLayoutHoc component={Reviews} path = '/restaurant/:id/reviews' />
