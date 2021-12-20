@@ -35,13 +35,13 @@ Router.get("/", passport.authenticate("jwt"), async (req,res) => {
  */
 Router.get("/:_id", async (req,res) => {
 try{
-    const {_id} = req.params;
+    const { _id } = req.params;
     const getUsers = await UserModel.findById(_id);
     const { fullName } = getUsers;
 
     if(!getUsers) return res.status(404).json({error : "No User Found"});
 
-    return res.json({user : { fullName }});
+    return res.json({user : { fullName } });
 } catch (error) {
     return res.status(500).json({ error: error.message });
   }

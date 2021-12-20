@@ -1,18 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+// redux
+import { useSelector, useDispatch } from "react-redux";
+import { getReviews } from "../../../redux/reducers/review/review.action"
 
 // components
 import ReviewCard from "./ReviewCard";
 import AddReviewCard from "./AddReviewCard";
 
 function Reviews() {
-  const [reviews, setReviews] = useState([
-    {
-      fullName: "John Doe",
-      isRestaurantReview: true,
-      createdAt: "2020-05-01T00:00:00.000Z",
-      reviewText: "This place is great!",
-    },
-  ]);
+  const [reviews, setReviews] = useState([]);
+
+  const dispatch = useDispatch();
+
+  const reduxState = useSelector(
+    (globalState) => globalState.restaurant.selectedRestaurant.restaurant
+  );
+
+  useEffect(() => {
+    if (reduxState) {
+      dispatch(getReviews(reduxState?._id)).then((data) => {
+        setReviews(data.payload.reviews);
+      });
+    }
+  }, [reduxState]);
 
   return <>
       <div className="w-full h-full flex-col md:flex md:flex-row relative gap-5">

@@ -10,8 +10,8 @@ function FoodList(props) {
           {props.name}
         </h2>
         <div className="flex flex-col gap-3">
-          {props.items.map((item, index) => (
-            <FoodItem key={index} {...item} />
+          {props.items.map((each, index) => (
+            <FoodItem key={index} _id={each} />
           ))}
         </div>
       </div>

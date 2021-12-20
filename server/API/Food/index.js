@@ -4,6 +4,25 @@ import { FoodModel } from "../../database/food";
 import { ValidateId, ValidateCategory} from '../../validation/common';
 // create a router
 const Router = express.Router();
+
+/**
+ * Route        /:_id
+ * Des          GET Food based on id
+ * Params       _id
+ * Access       Public
+ * Method       GET
+ */
+ Router.get("/:_id", async (req, res) => {
+  try {
+    const { _id } = req.params;
+    const foods = await FoodModel.findById(_id);
+    return res.json({ foods });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+
 /**
  * Route        /r/:_id
  * Des          GET all food based on particluar Restaurant

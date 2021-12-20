@@ -3,7 +3,7 @@ import express from "express";
 
 // db model
 import { ReviewModel } from "../../database/allModels"
-import { ValidateId } from "../../validation/common";
+// import { ValidateId } from "../../validation/common";
 import { ValidateReview } from "../../validation/review";
 
 const Router = express.Router();
@@ -17,10 +17,10 @@ const Router = express.Router();
  */
 Router.get("/:resid", async (req,res) => {
 try{
-  ValidateId(req.params);
-    const {resid} = req.params;
+  // ValidateId(req.params);
+    const { resid } = req.params;
     const reviews = await ReviewModel.find({restaurants : resid})
-    return res.json({reviews})
+    return res.json({ reviews })
 } catch (error) {
     return res.status(500).json({ error: error.message });
   }
