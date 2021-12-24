@@ -28,7 +28,7 @@ function Signin({ isOpen, setIsOpen }) {
   }
 
   const googleSignIn = () =>
-    (window.location.href = "http://localhost:4000/auth/google");
+    (window.location.href = "http://localhost:5000/auth/google");
 
   return <>
       <Transition appear show={isOpen} as={Fragment}>

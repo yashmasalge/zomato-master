@@ -50,7 +50,7 @@ function RestaurantLayout({children}) {
 
     return <>
         <Navbar />
-        <div className="container mx-auto px-4 lg:px-20 pb-10">
+        <div className="container mx-auto px-4 lg:px-20 pb-20">
          <ImageGrid images={restaurant.images} />   
          <RestaurantInfo
           name={restaurant?.name}

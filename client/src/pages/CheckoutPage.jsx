@@ -1,6 +1,7 @@
 import React from "react";
 import { BsShieldLockFill } from "react-icons/bs";
 
+
 // components
 import FoodItem from "../components/Cart/FoodItem";
 import AddressList from "../components/Checkout/AddressList";
@@ -43,7 +44,8 @@ function CheckoutPage() {
           quantity: 3,
         },
       ];
-      
+
+     
     return <>
     <div className="my-3 flex flex-col gap-3 items-center">
       <h1 className="text-xl text-center md:text-2xl font-bold">Checkout</h1>

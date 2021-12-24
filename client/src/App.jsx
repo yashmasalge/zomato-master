@@ -11,8 +11,10 @@ import RestaurantLayoutHoc from "./HOC/Restaurant.hoc";
 
 // Pages
 import HomePage from "./pages/HomePage";
-import RestaurantPage from "./pages/RestaurantPage";
+// import RestaurantPage from "./pages/RestaurantPage";
 import Checkout from "./pages/CheckoutPage";
+import  GoogleAuth  from "./pages/GoogleAuth";
+
 
 // Components
 import Overview from "./components/Restaurant/Overview";
@@ -40,6 +42,7 @@ function App() {
       <Route path="/restaurant/:id" element={<Navigate replace to="/restaurant/:id/overview" />} />
     </Routes>
       <HomeLayoutHoc component={HomePage} path="/:type" />
+      <HomeLayoutHoc component={GoogleAuth} path='/google/:token' />
       <RestaurantLayoutHoc component={Redirect} path = '/restaurant/:id' />
       <RestaurantLayoutHoc component={Overview} path = '/restaurant/:id/overview' />
       <RestaurantLayoutHoc component={OrderOnline} path = '/restaurant/:id/order-online' />
