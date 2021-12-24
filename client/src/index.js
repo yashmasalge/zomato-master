@@ -5,7 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider, provider } from 'react-redux';
-import store from "./redux/store"
+import store from "./redux/store";
+import axios from 'axios';
+
+if (localStorage.zomatoUser) {
+  const { token } = JSON.parse(localStorage.zomatoUser);
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+}
 
 ReactDOM.render(
   <React.StrictMode>

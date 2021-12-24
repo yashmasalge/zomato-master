@@ -2,6 +2,7 @@ import "./App.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Routes,Navigate,Route } from "react-router-dom";
+import React,{ useEffect } from "react";
 
 // HOC
 import HomeLayoutHoc from "./HOC/Home.hoc";
@@ -21,7 +22,17 @@ import Menu from "./components/Restaurant/Menu/Menu";
 import Photos from "./components/Restaurant/Photos/Photos";
 import Redirect from "./pages/Restaurant/Redirect";
 
+
+// Redux
+import { useDispatch } from "react-redux";
+import { getMySelf } from "./redux/reducers/user/user.action";
+
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMySelf());
+  },[localStorage])
   return (
     <>
        <Routes>
